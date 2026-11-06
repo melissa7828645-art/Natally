@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102d46" />
+  <meta name="description" content="Confirme sua presença na festa de 10 anos da Natally! Uma aventura pirata inspirada em One Piece." />
+  <title>Confirme sua presença | Aniversário da Natally</title>
+  <style>
+    :root {
+      --navy: #102d46;
+      --navy-2: #183f5b;
+      --blue: #2e7890;
+      --sky: #dff3f5;
+      --cream: #fff8e9;
+      --paper: #fffdf7;
+      --gold: #f4bd45;
+      --red: #d94b43;
+      --ink: #183247;
+      --muted: #617586;
+      --green: #1fa766;
+      --shadow: 0 22px 60px rgba(13, 40, 59, .18);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: ui-rounded, "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(244,189,69,.23) 0 3px, transparent 4px),
+        radial-gradient(circle at 92% 28%, rgba(46,120,144,.14) 0 4px, transparent 5px),
+        linear-gradient(180deg, #dff3f5 0%, #f3f8f2 48%, #fff5df 100%);
+      overflow-x: hidden;
+    }
+
+    .ocean {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 330px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(145deg, #0d2c45, #1d5b77 74%, #2c8290);
+      clip-path: ellipse(105% 88% at 50% 0%);
+    }
+    .ocean::before, .ocean::after {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 100px;
+      left: -20%;
+      bottom: -60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.10);
+      transform: rotate(-4deg);
+    }
+    .ocean::after { bottom: -78px; left: -12%; background: rgba(244,189,69,.13); transform: rotate(5deg); }
+
+    .shell { position: relative; z-index: 1; width: min(1080px, calc(100% - 36px)); margin: 0 auto; padding: 27px 0 52px; }
+    header { color: white; text-align: center; padding: 13px 10px 36px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 13px; border: 1px solid rgba(255,255,255,.32);
+      border-radius: 99px; background: rgba(255,255,255,.10);
+      color: #ffdf91; font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    h1 { margin: 17px 0 8px; font-size: clamp(2.35rem, 6vw, 4.6rem); line-height: .98; letter-spacing: -.055em; color: #fffaf0; text-shadow: 0 4px 0 rgba(0,0,0,.10); }
+    h1 span { color: var(--gold); }
+    .subtitle { margin: 0 auto; max-width: 570px; color: rgba(255,255,255,.86); font-size: clamp(.98rem, 2.1vw, 1.13rem); line-height: 1.55; }
+    .hat { display: inline-grid; place-items: center; width: 62px; height: 62px; margin-top: 22px; border-radius: 50%; background: var(--gold); box-shadow: 0 7px 0 #ca8e2d; font-size: 2rem; transform: rotate(-7deg); }
+
+    .layout { display: grid; grid-template-columns: .88fr 1.12fr; gap: 24px; align-items: stretch; margin-top: 0; }
+    .panel { border: 1px solid rgba(16,45,70,.08); border-radius: 25px; background: rgba(255,253,247,.96); box-shadow: var(--shadow); overflow: hidden; }
+    .story { padding: 30px; position: relative; background: linear-gradient(155deg, #fffdf7 0%, #fff4d9 100%); }
+    .story::after { content: "✦"; position: absolute; right: 22px; top: 12px; color: rgba(217,75,67,.15); font-size: 5rem; transform: rotate(15deg); }
+    .section-kicker { color: var(--red); text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; font-weight: 900; }
+    h2 { margin: 9px 0 13px; color: var(--navy); font-size: 1.65rem; line-height: 1.12; letter-spacing: -.035em; }
+    .story p { margin: 0; color: #536979; line-height: 1.7; font-size: .97rem; }
+    .quest { margin-top: 25px; padding: 17px; border-radius: 17px; background: white; border: 1px dashed #e2c27d; }
+    .quest strong { display: block; color: var(--navy); margin-bottom: 5px; }
+    .quest span { color: var(--muted); font-size: .88rem; line-height: 1.5; }
+    .mini-map { margin-top: 22px; height: 110px; border-radius: 16px; position: relative; overflow: hidden; background: repeating-linear-gradient(35deg, #f1dfb4 0 13px, #f5e8c9 13px 26px); border: 1px solid #e7d4a9; }
+    .mini-map::before { content: ""; position: absolute; inset: 16px 20px; border: 2px dashed #c49b56; border-radius: 48% 40% 50% 35%; transform: rotate(-8deg); }
+    .map-x { position: absolute; right: 24%; top: 32%; color: var(--red); font-size: 2.5rem; font-weight: 900; transform: rotate(-9deg); text-shadow: 1px 2px white; }
+    .map-caption { position: absolute; left: 17px; bottom: 12px; font-size: .69rem; letter-spacing: .1em; text-transform: uppercase; color: #98763e; font-weight: 900; }
+
+    .form-panel { padding: 31px; }
+    .form-heading { display: flex; align-items: center; gap: 13px; margin-bottom: 23px; }
+    .form-icon { flex: 0 0 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: #e5f3f4; font-size: 1.4rem; }
+    .form-heading h2 { margin: 0 0 4px; font-size: 1.42rem; }
+    .form-heading p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .field { margin-bottom: 18px; }
+    label { display: block; margin: 0 0 8px; font-weight: 800; color: var(--navy); font-size: .88rem; }
+    .required { color: var(--red); }
+    input, select {
+      display: block; width: 100%; min-height: 51px; padding: 13px 15px;
+      border: 1.5px solid #d9e3e5; border-radius: 13px; background: #fff;
+      color: var(--ink); font: inherit; font-size: .96rem; outline: none; transition: border .2s, box-shadow .2s;
+    }
+    input::placeholder { color: #9aaab2; }
+    input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(46,120,144,.12); }
+    .hint { display: block; margin-top: 7px; color: #788b97; font-size: .76rem; line-height: 1.45; }
+    .counter-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .counter-row label { margin-bottom: 0; }
+    .counter { display: inline-flex; align-items: center; gap: 11px; padding: 5px; border: 1px solid #d9e3e5; border-radius: 13px; background: white; }
+    .counter button { width: 34px; height: 34px; border: 0; border-radius: 9px; color: var(--navy); background: #e8f2f3; font-size: 1.2rem; font-weight: 800; cursor: pointer; }
+    .counter button:hover { background: #d6e9eb; }
+    .counter output { min-width: 20px; text-align: center; font-weight: 900; color: var(--navy); }
+    .submit {
+      width: 100%; min-height: 55px; margin-top: 7px; border: 0; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--green); color: white; font: inherit; font-weight: 900; font-size: 1rem;
+      cursor: pointer; box-shadow: 0 5px 0 #147d4b; transition: transform .15s, box-shadow .15s, filter .15s;
+    }
+    .submit:hover { filter: brightness(1.04); transform: translateY(-1px); box-shadow: 0 6px 0 #147d4b; }
+    .submit:active { transform: translateY(3px); box-shadow: 0 2px 0 #147d4b; }
+    .privacy { margin: 14px 5px 0; text-align: center; color: #7a8b95; font-size: .74rem; line-height: 1.5; }
+    .alert { display: none; margin: 0 0 16px; padding: 12px 14px; border-radius: 12px; background: #fff0ed; color: #a13e36; font-size: .86rem; line-height: 1.45; }
+    .alert.show { display: block; }
+
+    .bottom-note { margin: 23px 0 0; text-align: center; color: #547082; font-size: .84rem; }
+    .bottom-note strong { color: var(--navy); }
+    footer { padding: 26px 10px 0; text-align: center; color: #6b8390; font-size: .75rem; }
+    footer .skull { color: var(--red); font-size: 1rem; }
+
+    @media (max-width: 780px) {
+      .ocean { height: 390px; }
+      .shell { width: min(560px, calc(100% - 24px)); padding-top: 17px; }
+      header { padding-bottom: 29px; }
+      .layout { grid-template-columns: 1fr; gap: 16px; }
+      .story { padding: 24px; }
+      .form-panel { padding: 24px; }
+      .mini-map { height: 86px; }
+    }
+    @media (max-width: 390px) {
+      .form-panel, .story { padding: 20px; }
+      .counter-row { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="ocean" aria-hidden="true"></div>
+  <main class="shell">
+    <header>
+      <div class="eyebrow">☠ Uma aventura está chegando</div>
+      <h1>Natally faz <span>10!</span></h1>
+      <p class="subtitle">Prepare-se para navegar em uma grande aventura pirata! Sua presença vai deixar essa comemoração ainda mais especial.</p>
+      <div class="hat" aria-hidden="true">🏴‍☠️</div>
+    </header>
+
+    <section class="layout" aria-label="Informações e confirmação da festa">
+      <article class="panel story">
+        <div class="section-kicker">Tripulação convocada</div>
+        <h2>Você foi chamado para essa aventura!</h2>
+        <p>O bando está se reunindo para comemorar os 10 anos da Natally. Confirme sua presença e venha fazer parte dessa história cheia de amizade, diversão e clima de One Piece!</p>
+        <div class="quest">
+          <strong>📜 Sua missão</strong>
+          <span>Preencha seus dados ao lado. Ao enviar, o WhatsApp abrirá com a mensagem de confirmação prontinha para você encaminhar.</span>
+        </div>
+        <div class="mini-map" aria-label="Mapa do tesouro ilustrativo">
+          <span class="map-x">X</span>
+          <span class="map-caption">Aqui começa a aventura</span>
+        </div>
+      </article>
+
+      <section class="panel form-panel">
+        <div class="form-heading">
+          <div class="form-icon" aria-hidden="true">📝</div>
+          <div>
+            <h2>Confirme sua presença</h2>
+            <p>Leva só alguns instantes!</p>
+          </div>
+        </div>
+
+        <div id="alerta" class="alert" role="alert" aria-live="polite"></div>
+        <form id="rsvpForm" novalidate>
+          <div class="field">
+            <label for="nome">Nome do participante <span class="required">*</span></label>
+            <input id="nome" name="nome" type="text" placeholder="Digite seu nome completo" maxlength="80" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="codigo">Código do convite <span class="required">*</span></label>
+            <input id="codigo" name="codigo" type="text" placeholder="Ex.: NATALLY10" maxlength="30" autocomplete="off" required />
+            <span class="hint">Você encontra esse código no convite recebido.</span>
+          </div>
+
+          <div class="field">
+            <div class="counter-row">
+              <label for="acompanhantes">Quantidade de acompanhantes</label>
+              <div class="counter" aria-label="Quantidade de acompanhantes">
+                <button type="button" id="menos" aria-label="Diminuir acompanhantes">−</button>
+                <output id="quantidade" for="menos mais">0</output>
+                <button type="button" id="mais" aria-label="Aumentar acompanhantes">+</button>
+              </div>
+            </div>
+            <span class="hint">Não conte o participante principal. Se não levar ninguém, deixe em zero.</span>
+          </div>
+
+          <button class="submit" type="submit">
+            <span aria-hidden="true">☘</span> Confirmar pelo WhatsApp
+            <span aria-hidden="true">➜</span>
+          </button>
+          <p class="privacy">Ao clicar, você será direcionado ao WhatsApp <strong>(38) 99861-7565</strong> para enviar sua confirmação.</p>
+        </form>
+      </section>
+    </section>
+
+    <p class="bottom-note"><strong>Uma festa, um bando e muitas aventuras!</strong> Obrigado por fazer parte desse dia.</p>
+    <footer><span class="skull">☠</span> Tema One Piece · A aventura dos 10 anos da Natally</footer>
+  </main>
+
+  <script>
+    // WhatsApp em formato internacional: 55 + DDD + número.
+    const WHATSAPP_DESTINO = "5538998617565";
+    let acompanhantes = 0;
+    const quantidade = document.getElementById("quantidade");
+    const alerta = document.getElementById("alerta");
+
+    function atualizarQuantidade() {
+      quantidade.textContent = String(acompanhantes);
+      document.getElementById("menos").disabled = acompanhantes <= 0;
+      document.getElementById("mais").disabled = acompanhantes >= 10;
+      document.getElementById("menos").style.opacity = acompanhantes <= 0 ? ".45" : "1";
+      document.getElementById("mais").style.opacity = acompanhantes >= 10 ? ".45" : "1";
+    }
+
+    document.getElementById("menos").addEventListener("click", () => {
+      acompanhantes = Math.max(0, acompanhantes - 1);
+      atualizarQuantidade();
+    });
+
+    document.getElementById("mais").addEventListener("click", () => {
+      acompanhantes = Math.min(10, acompanhantes + 1);
+      atualizarQuantidade();
+    });
+
+    document.getElementById("rsvpForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const nome = document.getElementById("nome").value.trim();
+      const codigo = document.getElementById("codigo").value.trim();
+
+      if (!nome || !codigo) {
+        alerta.textContent = "Preencha seu nome e o código do convite para continuar.";
+        alerta.classList.add("show");
+        (!nome ? document.getElementById("nome") : document.getElementById("codigo")).focus();
+        return;
+      }
+
+      alerta.classList.remove("show");
+      const texto = [
+        "🏴‍☠️ *CONFIRMAÇÃO DE PRESENÇA — 10 ANOS DA NATALLY*",
+        "",
+        `👤 *Participante:* ${nome}`,
+        `🎟️ *Código do convite:* ${codigo}`,
+        `👥 *Acompanhantes:* ${acompanhantes}`,
+        `🧑‍🤝‍🧑 *Total de pessoas:* ${acompanhantes + 1}`,
+        "",
+        "Confirmo minha presença nessa aventura!"
+      ].join("\n");
+
+      const url = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    atualizarQuantidade();
+  </script>
+</body>
+</html>
